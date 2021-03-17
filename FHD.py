@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def consecutive_years(filename):
-    consecutive_years_giving = []
     df = pd.read_csv(filename, usecols=['Consecutive Years of Giving'])
     years_giving_sorted = sorted(df['Consecutive Years of Giving'])
     total = sum(years_giving_sorted)
