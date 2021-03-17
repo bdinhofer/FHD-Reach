@@ -1,14 +1,12 @@
+import csv
+import pandas as pd
+import matplotlib.pyplot as plt
 
 def consecutive_years(filename):
-    f = open(filename, 'r')
     consecutive_years_giving = []
-    for line in f.readlines()[1:]:
-        line = line.split(',')
-        consecutive_years_giving.append(line[1])
-    total = 0
-    years_giving_sorted = sorted(consecutive_years_giving)
-    for i in years_giving_sorted:
-        total += int(i)
+    df = pd.read_csv(filename, usecols=['Consecutive Years of Giving'])
+    years_giving_sorted = sorted(df['Consecutive Years of Giving'])
+    total = sum(years_giving_sorted)
     avg_years_giving = total/len(years_giving_sorted)
     midpoint = len(years_giving_sorted)//2
     median_years_giving = years_giving_sorted[midpoint]
@@ -32,7 +30,11 @@ def most_common_donation_date(filename):
         month_counts[month] = month_counts.get(month, 0) + 1
     return sorted(month_counts.items(), key = lambda x: x[1], reverse = True)
 
-                
+def plotData(filename, var_list):
+    df = pd.read_csv(filename, usecols=var_list)
+    df.plot(x=var_list[0], y=var_list[1], kind='scatter')
+    plt.show()
         
 print(consecutive_years('By Amount - Donations - 4K and up.csv'))
-print(most_common_donation_date('By Amount - Donations - 4K and up.csv'))
+#print(most_common_donation_date('By Amount - Donations - 4K and up.csv'))
+plotData('By Amount - Donations - 4K and up.csv', ['Consecutive Years of Giving', 'Largest gift amount'])
