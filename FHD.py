@@ -35,7 +35,14 @@ def plotData(filename, var_list):
     plt.title(var_list[0] + ' vs ' + var_list[1] + ' 4k up')
     plt.show()
 
+def plotBar(filename, var):
+    df = pd.read_csv(filename)
+    df[var].plot(x=var, kind='hist', ec='black')
+    plt.title(var + ' 4k up')
+    plt.show()
+
 #print(consecutive_years('By Amount - Donations - 4K and up.csv'))
 #print(most_common_donation_date('By Amount - Donations - 4K and up.csv'))
-plotData('By Amount - Donations - 4K and up.csv', ['Consecutive Years of Giving', 'Largest gift amount'])
-plotData('By Amount - Donations - 4K and up.csv', ['Consecutive Years of Giving', 'TG Amount'])
+#plotData('By Amount - Donations - 4K and up.csv', ['Consecutive Years of Giving', 'Largest gift amount'])
+#plotData('By Amount - Donations - 4K and up.csv', ['Consecutive Years of Giving', 'TG Amount'])
+plotBar('By Amount - Donations - 4K and up.csv', 'Consecutive Years of Giving')
