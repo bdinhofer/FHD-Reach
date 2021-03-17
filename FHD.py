@@ -33,8 +33,10 @@ def most_common_donation_date(filename):
 def plotData(filename, var_list):
     df = pd.read_csv(filename, usecols=var_list)
     df.plot(x=var_list[0], y=var_list[1], kind='scatter')
+    plt.title(var_list[0] + ' vs ' + var_list[1] + ' 4k up')
     plt.show()
-        
-print(consecutive_years('By Amount - Donations - 4K and up.csv'))
+
+#print(consecutive_years('By Amount - Donations - 4K and up.csv'))
 #print(most_common_donation_date('By Amount - Donations - 4K and up.csv'))
 plotData('By Amount - Donations - 4K and up.csv', ['Consecutive Years of Giving', 'Largest gift amount'])
+plotData('By Amount - Donations - 4K and up.csv', ['Consecutive Years of Giving', 'TG Amount'])
